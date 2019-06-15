@@ -496,7 +496,7 @@ function calculatePitStrategy() {
 		if (pitstops > 0 && betterTiming.lapsRemaining < 600) {
 			var laps = parseInt($row.find('[data-entry="lap"]').text(), 10)
 			, averageStintLength = laps / pitstops
-			, lapsUntilStop = Math.floor((Math.ceil( laps / averageStintLength) * averageStintLength) - laps)
+			//, lapsUntilStop = Math.floor((Math.ceil( laps / averageStintLength) * averageStintLength) - laps)
 			, remainingStops = Math.ceil(betterTiming.lapsRemaining / averageStintLength)
 			, carState = $row.find('.car-state').text().toLowerCase()
 			;
@@ -511,21 +511,21 @@ function calculatePitStrategy() {
 				$remaining.text("!");
 			}
 
-		  $cell.removeClass('imminent');
-			if (pitstops > 2) {
-				if (lapsUntilStop === NaN) {
-					$estimate.html("?");
-				} else if (lapsUntilStop < 2 && carState == 'run' ) {
-					$estimate.text('Next: Now?');
-					$cell.addClass('imminent');
-				} else if (lapsUntilStop >= 2) {
-					$estimate.text('Next: ' + lapsUntilStop + 'Laps?');
-				} else {
-					$estimate.text("!");
-				}
-			} else {
-				$estimate.html("?");
-			};
+		  	//$cell.removeClass('imminent');
+			// if (pitstops > 2) {
+			// 	if (lapsUntilStop === NaN) {
+			// 		$estimate.html("?");
+			// 	} else if (lapsUntilStop < 2 && carState == 'run' ) {
+			// 		$estimate.text('Next: Now?');
+			// 		$cell.addClass('imminent');
+			// 	} else if (lapsUntilStop >= 2) {
+			// 		$estimate.text('Next: ' + lapsUntilStop + 'Laps?');
+			// 	} else {
+			// 		$estimate.text("!");
+			// 	}
+			// } else {
+			// 	$estimate.html("?");
+			// };
 		}
 	}
 }
