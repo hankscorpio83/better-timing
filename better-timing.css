@@ -65,7 +65,8 @@ a#betterTimingClose {
 }
 
 .enhanced [aria-sort] {
-	background: rgba(255,255,255,0.25) !important;
+	background: white;
+	color: black;
 }
 
 .enhanced-wrapper table {
@@ -444,6 +445,20 @@ table.enhanced-order thead th {
 
 .enhanced-order .best {
 	opacity: 0.5;
+}
+
+.enhanced-order .popcorn-time {
+    animation: popcorn-time 1s alternate infinite;
+    color: rgba(255, 229, 22, 0.81);
+}
+
+@keyframes popcorn-time {
+    0 {
+        color: #ffe516;
+    }
+    100% {
+        color: rgba(255, 229, 22, 0.81);
+    }
 }
 
 .enhanced-order .sector .bar {

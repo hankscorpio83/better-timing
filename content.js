@@ -40,13 +40,13 @@ betterTiming.$standingsTable = document.createElement('table');
 betterTiming.$standingsTable.classList = "enhanced-order sortable";
 betterTiming.$standingsTable.innerHTML = '<thead>' +
         '<tr class="row">' +
-          '<th data-sort-method="number">Pos</th>' +
+          '<th data-sort-method="number" data-sort-default>Pos</th>' +
           '<th>Num</th>' +
           '<th>PIC</th>' +
           '<th>Status</th>' +
           '<th class="align-left">Driver / Team / Car (Tire)</th>' +
           '<th>Laps</th>' +
-          '<th>Best</th>' +
+          '<th class="hide-900">Best</th>' +
           '<th>Gap</th>' +
           '<th class="hide-900">Int</th>' +
           '<th>Lap Time</th>' +
@@ -78,7 +78,7 @@ betterTiming.$standingsTable.innerHTML = '<thead>' +
 						'</span>' +
           '</td>' +
           '<td class="car-lap-count" data-entry="lap"></td>' +
-          '<td class="car-lap-count" data-entry="bestlap"></td>' +
+          '<td class="car-bestlap hide-900" data-entry="bestlap"></td>' +
           '<td class="car-gaps">' +
             '<span data-entry="gap"></span>' +
             '<span class="previous expanded-info" data-entry="classGap"></span>' +
@@ -173,8 +173,8 @@ function updateData(data){
 function buildEnhancedView(){
 	enhance();
 	
-  // build standings
-  betterTiming.$standingsTable = $('.enhanced-order tbody');
+	// build standings
+	betterTiming.$standingsTable = $('.enhanced-order tbody');
 	betterTiming.sortTable = new Tablesort(document.querySelector('.enhanced-order'));
 	
 	// build status
@@ -188,7 +188,8 @@ function buildEnhancedView(){
     $row.removeAttr('data-template').appendTo(betterTiming.$standingsTable);
   };
 
-  checkOverallBest();
+	
+	checkOverallBest();
 	calculatePitStrategy();
 
   // toggle row expanded on click
@@ -215,10 +216,9 @@ function updateEnhancedView(){
     populateTableData(betterTiming.data.entries[i], $row);
     //$row.removeAttr('data-template').appendTo(betterTiming.$standingsTable);
   };
-	
-	betterTiming.sortTable.refresh();
 
-  checkOverallBest();
+	betterTiming.sortTable.refresh();
+	checkOverallBest();
 	calculatePitStrategy();
 };
 
@@ -407,6 +407,13 @@ function populateTableData(carData, $row) {
           $this.html('&nbsp;');
         }
         break;
+			case 'gapPrev':
+				$this.closest('td').removeClass('popcorn-time');
+				var gapPrevString = carData[field];
+				if ( parseFloat(gapPrevString, 10) < 1.5 && gapPrevString.indexOf(' ') === -1 && gapPrevString.indexOf(':') === -1) {
+					$this.closest('td').addClass('popcorn-time');
+				}
+				break;
       case 'currentSector1':
         if ( carData[field] == carData['bestSector1'] ) {
           $this.addClass('pb');
@@ -435,18 +442,12 @@ function populateTableData(carData, $row) {
 	});
 	
 	// sector progress indicator
-	$row.find('[data-sector]').each(function() {
+	$row.find('.bar').css('width', '0');
+	$row.find('[data-sector]').removeClass('recent').each(function() {
 		if ($(this).attr('data-sector') == currentSector) {
 			var $bar = $(this).find('.bar');
 			$bar.text((parseFloat(carData['position']['percent'], 10) * 100));
 			$bar.css('width', (parseFloat(carData['position']['percent'], 10) * 100) + '%');
-			$(this).nextUntil('.car-speed').find('.bar').css('width', '0');
-			$row.find('[data-sector]').removeClass('recent');
-			if (currentSector == "1") {
-				$row.find('[data-sector="3"]').addClass('recent');
-			} else {
-				$(this).prev('[data-sector]').addClass('recent');
-			}
 			return;
 		}
 	});
