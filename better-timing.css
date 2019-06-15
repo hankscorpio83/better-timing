@@ -1,0 +1,595 @@
+body.enhanced {
+/*	height: 100vh;
+	width: 100vw;
+	overflow: auto;*/
+
+/*	display: flex;
+	justify-content: center;*/
+	background: #7E8D85;
+	font-family: sans-serif;
+	font-size: 16px;
+	line-height: 1.4;
+}
+
+.enhanced .body_content {
+	display: none !important;
+}
+
+.enhanced .live-container-wrapper {
+/*	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 9999999;
+	overflow: auto;*/
+}
+
+.enhanced .live-container-wrapper .block {
+	/*display: none !important;*/
+}
+
+.enhanced-wrapper * {
+	transition: 0.2s;
+}
+
+.enhanced-wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.enhanced .enhanced-wrapper {
+	bottom: 0;
+	left: 0;
+	overflow: auto;
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 999999;
+}
+
+a#betterTimingClose {
+    background: #000;
+    padding: 1rem;
+    color: white;
+    display: inline-block;
+}
+
+.enhanced a#betterTimingClose {
+	position: absolute;
+	right: 0;
+	padding: 0.75rem;
+	background: black;
+	font-size: 1.3rem;
+}
+
+.enhanced-wrapper table {
+    display: none;
+}
+
+.enhanced .enhanced-wrapper table {
+    display: table;
+}
+
+.enhanced-status,
+.enhanced-order {
+	background: #2F242C;
+	border-collapse: collapse;
+	color: #fff;
+	font-family: "Source Sans Pro";
+	margin-bottom: 0;
+	overflow: auto;
+	table-layout: auto;
+	width: 100%;
+}
+
+.enhanced-wrapper table {
+	margin-bottom: 0;
+}
+
+/* Race Status Table */
+table.enhanced-status, 
+table.enhanced-status tr, 
+table.enhanced-status th, 
+table.enhanced-status td {
+    border: none;
+}
+
+table.enhanced-status .row {
+	display: flex;
+	justify-content: space-between;
+}
+
+.enhanced-status .row > * {
+	flex-basis: 25%;
+	line-height: 2;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+.enhanced-status .status {
+	text-indent: -999rem;
+	position: relative;
+	flex-basis: 50%;
+	flex-grow: 1;
+}
+
+.enhanced-status .status:after {
+	bottom: 0;
+	left: 0;
+	position: absolute;
+	right: 0;
+	text-align: center;
+	text-indent: 0;
+	top: 0;
+}
+
+.enhanced-status .green_flag,
+.enhanced-status .run_flag {
+    background: #00713d;
+    color: white;
+}
+
+.enhanced-status .green_flag:after,
+.enhanced-status .run_flag:after {
+	content: 'Green Flag';
+}
+
+.enhanced-status .red_flag,
+.enhanced-status .in_flag {
+	animation: red-flag-anim 1.5s alternate infinite;
+    background: #e31c23;
+    color: white;
+}
+
+.enhanced-status .red_flag:after,
+.enhanced-status .in_flag:after {
+    color: white;
+	content: 'Red Flag';
+}
+
+.enhanced-status .yellow_flag,
+.enhanced-status .out_flag {
+	animation: yellow-flag-anim 1.5s alternate infinite;
+    background: #ffe516;
+    color: black;
+}
+
+.enhanced-status .yellow_flag:after,
+.enhanced-status .out_flag:after {
+	content: 'Local Yellow';
+}
+
+.enhanced-status .full_yellow_flag {
+	animation: full-yellow-flag-anim 0.5s alternate infinite;
+    background: #ffe516;
+    color: black;
+	content: 'Full Course Yellow';
+}
+
+.enhanced-status .full_yellow_flag:after {
+	content: 'Full Course Yellow';
+}
+
+.enhanced-status .safety_car_flag {
+	animation: sc-anim 1.5s alternate infinite;
+    background: #ffe516;
+    color: black;
+	content: 'SAFETY CAR';
+}
+
+.enhanced-status .safety_car_flag:after {
+	content: 'SAFETY CAR';
+}
+
+.enhanced-status .chk_flag,
+.enhanced-status .off_flag,
+.enhanced-order .state-chk {
+    background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+    color: transparent;
+}
+
+@keyframes yellow-flag-anim {
+  from {
+    background-color: #ffe516; }
+  to {
+    background-color: #ffe516cf; } 
+}
+
+@keyframes full-yellow-flag-anim {
+  from {
+    background-color: #ffe516; }
+  to {
+    background-color: #ffe516cf; } 
+}
+
+@keyframes red-flag-anim {
+  from {
+    background-color: #e31c23; }
+  to {
+    background-color: #e31c23cf; }
+}
+
+@keyframes sc-anim {
+  80% {
+    background-color: #ffe516; }
+  100% {
+    background-color: #015daa; } 
+}
+
+
+/* Running Order Table */
+table.enhanced-order, 
+table.enhanced-order tr, 
+table.enhanced-order th, 
+table.enhanced-order td {
+    border: none;
+}
+
+table.enhanced-order thead th {
+    position: sticky;
+    top: 0;
+    z-index: 99;
+}
+
+.enhanced-order tbody td:hover {
+	cursor: pointer;
+}
+
+.enhanced-order .expanded-info {
+    font-size: 1.4rem;
+}
+
+.enhanced-order tr[data-template],
+.compact .enhanced-order .expanded-info {
+    display: none;
+}
+
+.enhanced-order .expanded-info,
+.compact .enhanced-order tr.expanded .expanded-info {
+	display: flex;
+}
+
+.enhanced-order .expanded-info {
+	justify-content: center;
+}
+
+.enhanced-order .justify-between .expanded-info {
+	justify-content: space-between;
+}
+
+.enhanced-order .expanded .car-ranking {
+    border-left: 1px solid;
+}
+
+/*.enhanced-order tr:nth-child(2n) {
+    background: black;
+}*/
+
+.enhanced-order tr {
+    background: black;
+}
+
+.enhanced-order tr.car-state-stop {
+    opacity: 0.33;
+}
+
+.enhanced-order tr:hover {
+    background: rgba(0,0,0,0.75);;
+}
+
+.enhanced-order th {
+	background: black;
+	border-bottom: 2px solid white;
+	min-width: 0;
+	padding: 0.5rem;
+}
+
+.enhanced-order td {
+	min-width: 0;
+	padding: 0.25rem 0.5rem;
+}
+
+.enhanced-order th, 
+.enhanced-order td {
+	justify-content: center;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.enhanced-order .align-left {
+	justify-content: flex-start;
+	text-align: left;
+}
+
+.enhanced-order .justify-between {
+	justify-content: space-between;
+}
+
+.enhanced-order .car-ranking,
+.enhanced-order .car-number {
+  font-weight: 700;
+}
+
+.enhanced-order .car-pic,
+.enhanced-order .car-laps,
+.enhanced-order .car-gaps,
+.enhanced-order .car-lap-times,
+.enhanced-order .sector.recent .current,
+.enhanced-order .car-pitstops
+.enhanced-order .car-gaps .previous,
+.enhanced-order .car-lap-times .best,
+.enhanced-order .sector .best,
+.enhanced-order .car-pitstops .estimate,
+.enhanced-order .car-pitstops .remaining {
+  font-weight: 400;
+}
+
+.enhanced-order .car-ranking,
+.enhanced-order .car-number,
+.enhanced-order .car-state,
+.enhanced-order .car-pic {
+	font-size: 1.5rem;
+}
+
+.enhanced-order .car-state.state-run {
+	color: #00713d;
+}
+
+.enhanced-order .car-state.state-in,
+.enhanced-order .car-state.state-out {
+	color: #ffe516;
+}
+
+.enhanced-order .car-state.state-off {
+	color: #333;
+}
+
+.enhanced-order .car-state.state-stop {
+	color: #e31c23;
+}
+
+.enhanced-order .car-detail-wrap {
+	align-items: center;
+	display: flex;
+	justify-content: space-between;
+}
+
+.enhanced-order .car-tire {
+    margin-left: 0.5rem;
+}
+
+.enhanced-order .car-tire:before {
+    content: '(';
+}
+
+.enhanced-order .car-tire:after {
+    content: ')';
+}
+
+.enhanced-order .driver-detail [data-entry="driver_id"] {
+	display: none;
+}
+
+.enhanced-order .driver-detail {
+	display: none;
+}
+
+.enhanced-order tr.expanded .driver-detail {
+	display: block;
+}
+
+.enhanced-order .driver-detail-popup table{
+	border: none;
+	background: rgba(50,50,50,0.2);
+	width: auto;
+}
+
+.enhanced-order .driver-detail-popup tr,
+.enhanced-order .driver-detail-popup th {
+	background: black;
+}
+
+.enhanced-order .driver-detail-popup th,
+.enhanced-order .driver-detail-popup td {
+    padding: 0 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 100;
+}
+
+.enhanced-order .sector {
+  position: relative;
+  color: #ffe516cf;
+}
+
+.enhanced-order .sector.recent {
+  color: #ffffff;
+}
+
+.enhanced-order .pb,
+.enhanced-order .best {
+  color: #00713d !important;
+}
+
+.enhanced-order .pb {
+	animation: best-time 2s alternate infinite;
+}
+
+.enhanced-order .ob {
+  color: #b100b1 !important;
+  font-weight: bold !important;
+  opacity: 1 !important;
+}
+
+.enhanced-order .ob,
+.enhanced-order .pb {
+	font-weight: bold;
+	opacity: 1 !important;
+}
+
+@keyframes best-time {
+  0% {
+    opacity: 0.5; }
+  66% {
+    opacity: 1; } 
+}
+
+.enhanced-order .best {
+	opacity: 0.5;
+}
+
+.enhanced-order .sector .bar {
+  background: rgba(255,255,255,0.1);
+  color: transparent;
+  font-size: 0;
+  left: 0;
+  position: absolute;
+  top: auto;
+  bottom: 0;
+  width: 100%;
+  z-index: 1;
+  height: 2px;
+}
+
+.enhanced-order .sector .current,
+.enhanced-order .sector .best {
+  position: relative;
+  z-index: 2;
+}
+
+.enhanced-order .previous,
+.enhanced-order .estimate,
+.enhanced-order .remaining {
+    color: #666;
+		font-size: 1.1rem;
+}
+
+.enhanced-order .car-pitstops .expanded-info * {
+    text-transform: uppercase;
+}
+
+.enhanced-order .car-pitstops .expanded-info {
+    flex-direction: column;
+}
+
+.enhanced-order .car-pitstops.imminent {
+	animation: needs-to-pit 2s alternate infinite;
+}
+
+@keyframes needs-to-pit {
+	0% {
+		background: black;
+	}
+	100% {
+		background: #e31c234d;
+	}
+}
+
+/* Categories */
+.enhanced-order td.car-number {
+    color: white !important;
+}
+
+.enhanced-order td.LMP1,
+.enhanced-order span.LMP1 { 
+	color: #cc0c00;
+}
+
+.enhanced-order td.car-number.LMP1 {
+    background: #cc0c00;
+}
+
+.enhanced-order td.LMP2,
+.enhanced-order span.LMP2 { 
+	color: #335687; 
+}
+
+.enhanced-order td.car-number.LMP2 {
+    background: #335687;
+}
+
+.enhanced-order td.LMGTEPro,
+.enhanced-order span.LMGTEPro { 
+	color: #009e49;
+}
+
+.enhanced-order td.car-number.LMGTEPro {
+    background: #009e49;
+}
+
+.enhanced-order td.LMGTEAm,
+.enhanced-order span.LMGTEAm { 
+	color: #ff6600; 
+}
+
+.enhanced-order td.car-number.LMGTEAm {
+    background: #ff6600;
+}
+
+.enhanced-order tr.LMP1,
+.enhanced-order tr.LMP2,
+.enhanced-order tr.LMGTEPro,
+.enhanced-order tr.LMGTEAm {
+  border-top: 2px solid;
+}
+
+.enhanced-order tr.LMP1 { border-color: #cc0c00 }
+.enhanced-order tr.LMP2 { border-color: #335687; }
+.enhanced-order tr.LMGTEPro { border-color: #009e49; }
+.enhanced-order tr.LMGTEAm { border-color: #ff6600; }
+
+/* only add a border to the class leader */
+.enhanced-order tr.LMP1 ~ tr.LMP1, 
+.enhanced-order tr.LMP2 ~ tr.LMP2, 
+.enhanced-order tr.LMGTEPro ~ tr.LMGTEPro, 
+.enhanced-order tr.LMGTEAm ~ tr.LMGTEAm {
+    border-top-width: 0;
+}
+
+
+/* Narrow Screens */
+@media (max-width: 1080px) {
+    span.car-detail-wrap {
+        flex-wrap: wrap;
+    }
+
+    span.car-detail-wrap span {
+        flex-basis: 100%
+    }
+
+    span.car-car,
+    span.car-tire,
+    th.car-speed,
+    td.car-speed {
+        display: none;
+    }
+}
+
+@media (max-width: 900px) {
+	.enhanced-order th {
+		font-size: 1.1rem;
+		font-weight: 100;
+	}
+
+	.enhanced-order td {
+		font-size: 1.1rem;
+	}
+
+	.enhanced .hide-900 {
+		display: none;
+	}
+}
+
+@media (max-width: 700px) {
+	.enhanced .hide-700 {
+	    display: none;
+	}
+
+	.enhanced * {
+	    font-size: 0.8rem !important;
+	}
+}

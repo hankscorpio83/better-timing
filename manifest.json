@@ -1,0 +1,31 @@
+{
+	"manifest_version": 2,
+	"name": "Better Timing For No Race In Particular",
+	"version": "0.11",
+	"icons": { 
+          "128": "icon.png" 
+	},
+	"content_scripts": [
+		{
+			"matches": [
+				"https://www.fiawec.com/en/live",
+				"https://hankscorpio83.github.io/"
+			],
+			"js": [
+				"jquery-3.4.1.min.js",
+				"moment.js",
+				"tablesort.min.js",
+				"content.js"
+			],
+			"css": [
+				"better-timing.css"
+			],
+			"run_at": "document_start"
+		}
+	],
+	"permissions": [
+		"webRequest",
+		"https://www.fiawec.com/en/live",
+		"https://hankscorpio83.github.io/"
+	]
+}
