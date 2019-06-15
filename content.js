@@ -374,8 +374,8 @@ function populateTableData(carData, $row) {
 	}
 
 	$row.addClass(carClass);
-	$row.find('.pb').removeClass('.pb');
-	$row.find('.ob').removeClass('.ob');
+	$row.find('.pb').removeClass('pb');
+	$row.find('.ob').removeClass('ob');
 	
 	$row.find('[data-entry]').each(function() {
 		var field = $(this).attr('data-entry')
