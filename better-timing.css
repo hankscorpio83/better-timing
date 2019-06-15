@@ -500,38 +500,38 @@ table.enhanced-order thead th {
 
 .enhanced-order td.LMP1,
 .enhanced-order span.LMP1 { 
-	color: #cc0c00;
+	color: #D42E12;
 }
 
 .enhanced-order td.car-number.LMP1 {
-    background: #cc0c00;
+    background: #D42E12;
 }
 
 .enhanced-order td.LMP2,
 .enhanced-order span.LMP2 { 
-	color: #335687; 
+	color: #36578C; 
 }
 
 .enhanced-order td.car-number.LMP2 {
-    background: #335687;
+    background: #36578C;
 }
 
 .enhanced-order td.LMGTEPro,
 .enhanced-order span.LMGTEPro { 
-	color: #009e49;
+	color: #009645;
 }
 
 .enhanced-order td.car-number.LMGTEPro {
-    background: #009e49;
+    background: #009645;
 }
 
 .enhanced-order td.LMGTEAm,
 .enhanced-order span.LMGTEAm { 
-	color: #ff6600; 
+	color: #FE5000; 
 }
 
 .enhanced-order td.car-number.LMGTEAm {
-    background: #ff6600;
+    background: #FE5000;
 }
 
 .enhanced-order tr.LMP1,
@@ -541,10 +541,10 @@ table.enhanced-order thead th {
   border-top: 2px solid;
 }
 
-.enhanced-order tr.LMP1 { border-color: #cc0c00 }
-.enhanced-order tr.LMP2 { border-color: #335687; }
-.enhanced-order tr.LMGTEPro { border-color: #009e49; }
-.enhanced-order tr.LMGTEAm { border-color: #ff6600; }
+.enhanced-order tr.LMP1 { border-color: #D42E12 }
+.enhanced-order tr.LMP2 { border-color: #36578C; }
+.enhanced-order tr.LMGTEPro { border-color: #009645; }
+.enhanced-order tr.LMGTEAm { border-color: #FE5000; }
 
 /* only add a border to the class leader */
 .enhanced-order tr.LMP1 ~ tr.LMP1, 
