@@ -47,7 +47,7 @@ betterTiming.$standingsTable.innerHTML = '<thead>' +
           '<th class="align-left">Driver / Team / Car (Tire)</th>' +
           '<th>Laps</th>' +
           '<th>Gap</th>' +
-          '<th class="hide-900">GIC</th>' +
+          '<th class="hide-900">Int</th>' +
           '<th>Lap Time</th>' +
           '<th class="hide-700">S1</th>' +
           '<th class="hide-700">S2</th>' +
@@ -79,10 +79,10 @@ betterTiming.$standingsTable.innerHTML = '<thead>' +
           '<td class="car-lap-count" data-entry="lap"></td>' +
           '<td class="car-gaps">' +
             '<span data-entry="gap"></span>' +
-            '<span class="previous expanded-info" data-entry="gapPrev"></span>' +
+            '<span class="previous expanded-info" data-entry="classGap"></span>' +
           '</td>' +
           '<td class="car-gap-previous hide-900">' +
-						'<span data-entry="classGap"></span>' +
+						'<span data-entry="gapPrev"></span>' +
             '<span class="previous expanded-info" data-entry="classGapPrev"></span>' +
 					'</td>' +
           '<td class="car-lap-times">' +
