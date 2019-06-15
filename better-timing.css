@@ -34,9 +34,10 @@ body.enhanced {
 }
 
 .enhanced-wrapper {
-    position: absolute;
-    top: 0;
-    right: 0;
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 999999;
 }
 
 .enhanced .enhanced-wrapper {
@@ -46,7 +47,6 @@ body.enhanced {
 	position: absolute;
 	right: 0;
 	top: 0;
-	z-index: 999999;
 }
 
 a#betterTimingClose {
@@ -62,6 +62,10 @@ a#betterTimingClose {
 	padding: 0.75rem;
 	background: black;
 	font-size: 1.3rem;
+}
+
+.enhanced [aria-sort] {
+	background: rgba(255,255,255,0.25) !important;
 }
 
 .enhanced-wrapper table {
