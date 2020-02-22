@@ -1,10 +1,13 @@
 {
 	"manifest_version": 2,
 	"name": "Better Timing For No Race In Particular",
-	"version": "0.20",
+	"version": "0.31",
 	"icons": { 
           "128": "icon.png" 
 	},
+	"web_accessible_resources" : [
+		"piggyback.js"
+	],
 	"content_scripts": [
 		{
 			"matches": [

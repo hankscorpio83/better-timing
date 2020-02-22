@@ -1,3 +1,8 @@
+HTMLElement.prototype.htmlContent = function(html) {
+    var dom = new DOMParser().parseFromString('<template>'+html+'</template>', 'text/html').head;
+    this.appendChild(dom.firstElementChild.content);
+}
+
 var betterTiming = [];
 
 betterTiming.weather = {
@@ -28,17 +33,17 @@ betterTiming.$wrapper.classList = "enhanced-wrapper compact";
 
 betterTiming.$statusTable = document.createElement('table');
 betterTiming.$statusTable.classList = "enhanced-status";
-betterTiming.$statusTable.innerHTML = '<thead></thead><tbody>' +
+betterTiming.$statusTable.htmlContent('<thead></thead><tbody>' +
 				'<tr class="row">' +
 					'<td class="elapsed" style="display: none;" data-status="elapsed"></td>' +
 					'<td class="remaining" data-status="remaining"></td>' +
 					'<td class="status" data-status="racestate"></td>' +
           '<td class="weather" data-status="weather"></td>' +
-				'</tr>';
+				'</tr>');
 				
 betterTiming.$standingsTable = document.createElement('table');
 betterTiming.$standingsTable.classList = "enhanced-order sortable";
-betterTiming.$standingsTable.innerHTML = '<thead>' +
+betterTiming.$standingsTable.htmlContent('<thead>' +
         '<tr class="row">' +
           '<th data-sort-method="number" data-sort-default>Pos</th>' +
           '<th>Num</th>' +
@@ -117,7 +122,7 @@ betterTiming.$standingsTable.innerHTML = '<thead>' +
 						'</span>' +
           '</td>' +
         '</tr>' + 
-      '</tbody>';
+      '</tbody>');
 			
 
 
@@ -537,45 +542,8 @@ function calculatePitStrategy() {
 function interceptData() {
   var xhrOverrideScript = document.createElement('script');
   xhrOverrideScript.type = 'text/javascript';
-  xhrOverrideScript.innerHTML = `
-  (function() {
-    var XHR = XMLHttpRequest.prototype;
-    var send = XHR.send;
-    var open = XHR.open;
-    XHR.open = function(method, url) {
-        this.url = url; // the request url
-        return open.apply(this, arguments);
-    }
-    XHR.send = function() {
-        this.addEventListener('load', function() {
-            if (
-							this.url.includes('data.json') || 
-							this.url.includes('1__data.json') || 
-							this.url.includes('2__data.json') || 
-							this.url.includes('3__data.json') || 
-							this.url.includes('4__data.json') || 
-							this.url.includes('https://cors-anywhere.herokuapp.com/https://storage.googleapis.com/fiawec-prod/assets/live/WEC/__data.json') ||
-							this.url.includes('https://storage.googleapis.com/fiawec-prod/assets/live/WEC/__data.json')
-							) {
-								var responseContainingEle = document.getElementById('__interceptedData');
-								
-								if (responseContainingEle) {
-									responseContainingEle.innerText = this.response;
-								} else {
-									var dataDOMElement = document.createElement('div');
-									dataDOMElement.id = '__interceptedData';
-									dataDOMElement.innerText = this.response;
-									dataDOMElement.style.height = 0;
-									dataDOMElement.style.overflow = 'hidden';
-									document.body.appendChild(dataDOMElement);
-								}
-            }               
-        });
-        return send.apply(this, arguments);
-    };
-  })();
-  `
-  document.head.prepend(xhrOverrideScript);
+	xhrOverrideScript.src = chrome.runtime.getURL("piggyback.js");
+ 	document.getElementsByTagName('head')[0].appendChild(xhrOverrideScript);
 }
 
 // once body and head are available, inject script
