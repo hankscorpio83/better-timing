@@ -325,6 +325,12 @@ function updateEnhancedView(){
 	calculatePitStrategy();
 };
 
+function clearStoredPitstops(sessionId) {
+	localStorage.clear();
+	localStorage.setItem('sessionId', sessionId);
+	betterTiming.$standingsTable.find('.car-pitstops').removeAttr('pitstops').removeAttr('median-stint').find('[data-calc]').text();
+}
+
 // load pitstop data from local storage
 function loadStoredPitstops() {
 	var StatusData = betterTiming.data.params
@@ -333,8 +339,7 @@ function loadStoredPitstops() {
 
 	// if there is no/a different stored session ID, erase the stored data
 	if(storedSessionId === null || storedSessionId != StatusData['sessionId']) {
-		localStorage.clear();
-		localStorage.setItem('sessionId', StatusData['sessionId']);
+		clearStoredPitstops(StatusData['sessionId']);
 	} else {
 		for (var i = localStorage.length - 1; i >= 0; i--) {
 			// for each item in storage, copy the stored pitstop data to the car data
@@ -415,7 +420,14 @@ function checkOverallBest() {
 };
 
 function populateRaceStatus() {
-	var StatusData = betterTiming.data.params;
+	var StatusData = betterTiming.data.params
+		, storedSessionId = localStorage.getItem('sessionId')
+		;
+
+	// if there is no/a different stored session ID, erase the stored data
+	if(storedSessionId === null || storedSessionId != StatusData['sessionId']) {
+		clearStoredPitstops(StatusData['sessionId']);
+	}
 	
 	betterTiming.$statusTable.find('[data-status]').each(function() {
 		var field = $(this).attr('data-status')
@@ -641,20 +653,22 @@ function populateDriverData($row) {
 		var driverData = betterTiming.data.driversResult.find(o => o.driverID == driverId)
 			;
 
-		if (driverData.lastLapDiff === undefined) {
-			driverData.lastLapDiff = "-";
+		if (driverData != undefined) {
+			if (driverData.lastLapDiff == undefined) {
+				driverData.lastLapDiff = "-";
+			}
+					
+			$driverDetailPopup.html('<table><thead>' +
+				'<tr><th>Laps</th><th>Best Lap</th><th>Best Lap #</th><th>Last Lap Diff</th><th>Driving Time</th></tr></thead>' +
+				'<tbody><tr>' +
+				'<td>' + driverData.laps + '</td>' +
+				'<td>' + driverData.bestLap + '</td>' +
+				'<td>' + driverData.bestLapNumber + '</td>' +
+				'<td>' + driverData.lastLapDiff + '</td>' +
+				'<td>' + convertSecondsToHMS(driverData['drivingTime']) + '</td>' +
+				'</tr></tbody></table>'
+			);
 		}
-				
-		$driverDetailPopup.html('<table><thead>' +
-			'<tr><th>Laps</th><th>Best Lap</th><th>Best Lap #</th><th>Last Lap Diff</th><th>Driving Time</th></tr></thead>' +
-			'<tbody><tr>' +
-			'<td>' + driverData.laps + '</td>' +
-			'<td>' + driverData.bestLap + '</td>' +
-			'<td>' + driverData.bestLapNumber + '</td>' +
-			'<td>' + driverData.lastLapDiff + '</td>' +
-			'<td>' + convertSecondsToHMS(driverData['drivingTime']) + '</td>' +
-			'</tr></tbody></table>'
-		);
 	}
 }
 
@@ -706,7 +720,7 @@ function calculatePitStrategy() {
 					lapsSinceLast = 0;
 				}
 
-				if (medianStint !== "NaN") {
+				if (medianStint != "NaN") {
 
 					var medianStint = parseInt(medianStint, 10)
 						, lapsUntilNext = medianStint - lapsSinceLast
