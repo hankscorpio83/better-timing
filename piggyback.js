@@ -24,17 +24,7 @@
 				//this.url.includes('https://scoring.imsa.com/scoring_data/SessionInfo_JSONP.json?callback=jsonpSessionInfo')
 			) {
 				var responseContainingEle = document.getElementById('__interceptedData');
-				
-				if (responseContainingEle) {
-					responseContainingEle.innerText = this.response;
-				} else {
-					var dataDOMElement = document.createElement('div');
-					dataDOMElement.id = '__interceptedData';
-					dataDOMElement.innerText = this.response;
-					dataDOMElement.style.height = 0;
-					dataDOMElement.style.overflow = 'hidden';
-					document.body.appendChild(dataDOMElement);
-				}
+				responseContainingEle.innerText = this.response;
 			}
 		});
 		return send.apply(this, arguments);

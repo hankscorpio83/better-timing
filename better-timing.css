@@ -50,10 +50,11 @@ body.enhanced {
 }
 
 a#betterTimingClose {
-    background: #000;
-    padding: 1rem;
-    color: white;
-    display: inline-block;
+	background: #000;
+	padding: 1rem;
+	color: white;
+	display: inline-block;
+	z-index: 100;
 }
 
 .enhanced a#betterTimingClose {
@@ -70,11 +71,11 @@ a#betterTimingClose {
 }
 
 .enhanced-wrapper table {
-    display: none;
+	display: none;
 }
 
 .enhanced .enhanced-wrapper table {
-    display: table;
+	display: table;
 }
 
 .enhanced-status,
@@ -98,16 +99,18 @@ table.enhanced-status,
 table.enhanced-status tr, 
 table.enhanced-status th, 
 table.enhanced-status td {
-    border: none;
+	border: none;
 }
 
 table.enhanced-status .row {
 	display: flex;
 	justify-content: space-between;
+	height: 100%;
 }
 
 .enhanced-status .row > * {
-	flex-basis: 25%;
+	flex-basis: auto;
+	flex-grow: 1;
 	line-height: 2;
 	margin: 0;
 	padding: 0;
@@ -117,8 +120,7 @@ table.enhanced-status .row {
 .enhanced-status .status {
 	text-indent: -999rem;
 	position: relative;
-	flex-basis: 50%;
-	flex-grow: 1;
+	flex-grow: 4;
 }
 
 .enhanced-status .status:after {
@@ -133,8 +135,8 @@ table.enhanced-status .row {
 
 .enhanced-status .green_flag,
 .enhanced-status .run_flag {
-    background: #00713d;
-    color: white;
+	background: #00713d;
+	color: white;
 }
 
 .enhanced-status .green_flag:after,
@@ -145,21 +147,21 @@ table.enhanced-status .row {
 .enhanced-status .red_flag,
 .enhanced-status .in_flag {
 	animation: red-flag-anim 1.5s alternate infinite;
-    background: #e31c23;
-    color: white;
+	background: #e31c23;
+	color: white;
 }
 
 .enhanced-status .red_flag:after,
 .enhanced-status .in_flag:after {
-    color: white;
+	color: white;
 	content: 'Red Flag';
 }
 
 .enhanced-status .yellow_flag,
 .enhanced-status .out_flag {
 	animation: yellow-flag-anim 1.5s alternate infinite;
-    background: #ffe516;
-    color: black;
+	background: #ffe516;
+	color: black;
 }
 
 .enhanced-status .yellow_flag:after,
@@ -169,8 +171,8 @@ table.enhanced-status .row {
 
 .enhanced-status .full_yellow_flag {
 	animation: full-yellow-flag-anim 0.5s alternate infinite;
-    background: #ffe516;
-    color: black;
+	background: #ffe516;
+	color: black;
 	content: 'Full Course Yellow';
 }
 
@@ -180,8 +182,8 @@ table.enhanced-status .row {
 
 .enhanced-status .safety_car_flag {
 	animation: sc-anim 1.5s alternate infinite;
-    background: #ffe516;
-    color: black;
+	background: #ffe516;
+	color: black;
 	content: 'SAFETY CAR';
 }
 
@@ -192,38 +194,38 @@ table.enhanced-status .row {
 .enhanced-status .chk_flag,
 .enhanced-status .off_flag,
 .enhanced-order .state-chk {
-    background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
-    background-size: 20px 20px;
-    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
-    color: transparent;
+	background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
+	background-size: 20px 20px;
+	background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+	color: transparent;
 }
 
 @keyframes yellow-flag-anim {
-  from {
-    background-color: #ffe516; }
-  to {
-    background-color: #ffe516cf; } 
+	from {
+		background-color: #ffe516; }
+	to {
+		background-color: #ffe516cf; } 
 }
 
 @keyframes full-yellow-flag-anim {
-  from {
-    background-color: #ffe516; }
-  to {
-    background-color: #ffe516cf; } 
+	from {
+		background-color: #ffe516; }
+	to {
+		background-color: #ffe516cf; } 
 }
 
 @keyframes red-flag-anim {
-  from {
-    background-color: #e31c23; }
-  to {
-    background-color: #e31c23cf; }
+	from {
+		background-color: #e31c23; }
+	to {
+		background-color: #e31c23cf; }
 }
 
 @keyframes sc-anim {
-  80% {
-    background-color: #ffe516; }
-  100% {
-    background-color: #015daa; } 
+	80% {
+		background-color: #ffe516; }
+	100% {
+		background-color: #015daa; } 
 }
 
 
@@ -232,13 +234,20 @@ table.enhanced-order,
 table.enhanced-order tr, 
 table.enhanced-order th, 
 table.enhanced-order td {
-    border: none;
+	border: none;
+}
+
+.enhanced-status {
+	position: sticky;
+	top: 0;
+	z-index: 99;
+	height: 32px;
 }
 
 table.enhanced-order thead th {
-    position: sticky;
-    top: 0;
-    z-index: 99;
+	position: sticky;
+	top: 32px;
+	z-index: 99;
 }
 
 .enhanced-order tbody td:hover {
@@ -246,12 +255,12 @@ table.enhanced-order thead th {
 }
 
 .enhanced-order .expanded-info {
-    font-size: 1.4rem;
+	font-size: 1.4rem;
 }
 
 .enhanced-order tr[data-template],
 .compact .enhanced-order .expanded-info {
-    display: none;
+	display: none;
 }
 
 .enhanced-order .expanded-info,
@@ -268,23 +277,23 @@ table.enhanced-order thead th {
 }
 
 .enhanced-order .expanded .car-ranking {
-    border-left: 1px solid;
+	border-left: 1px solid;
 }
 
 /*.enhanced-order tr:nth-child(2n) {
-    background: black;
+	background: black;
 }*/
 
 .enhanced-order tr {
-    background: black;
+	background: black;
 }
 
 .enhanced-order tr.car-state-stop {
-    opacity: 0.33;
+	opacity: 0.33;
 }
 
 .enhanced-order tr:hover {
-    background: rgba(0,0,0,0.75);;
+	background: rgba(0,0,0,0.75);;
 }
 
 .enhanced-order th {
@@ -302,8 +311,8 @@ table.enhanced-order thead th {
 .enhanced-order th, 
 .enhanced-order td {
 	justify-content: center;
-    text-align: center;
-    vertical-align: middle;
+	text-align: center;
+	vertical-align: middle;
 }
 
 .enhanced-order .align-left {
@@ -365,15 +374,15 @@ table.enhanced-order thead th {
 }
 
 .enhanced-order .car-tire {
-    margin-left: 0.5rem;
+	margin-left: 0.5rem;
 }
 
 .enhanced-order .car-tire:before {
-    content: '(';
+	content: '(';
 }
 
 .enhanced-order .car-tire:after {
-    content: ')';
+	content: ')';
 }
 
 .enhanced-order .driver-detail [data-entry="driver_id"] {
@@ -401,23 +410,23 @@ table.enhanced-order thead th {
 
 .enhanced-order .driver-detail-popup th,
 .enhanced-order .driver-detail-popup td {
-    padding: 0 0.5rem;
-    font-size: 1.1rem;
-    font-weight: 100;
+	padding: 0 0.5rem;
+	font-size: 1.1rem;
+	font-weight: 100;
 }
 
 .enhanced-order .sector {
-  position: relative;
-  color: #ffe516cf;
+	position: relative;
+	color: #ffe516cf;
 }
 
 .enhanced-order .sector.recent {
-  color: #ffffff;
+	color: #ffffff;
 }
 
 .enhanced-order .pb,
 .enhanced-order .best {
-  color: #00713d !important;
+	color: #00713d !important;
 }
 
 .enhanced-order .pb {
@@ -425,9 +434,9 @@ table.enhanced-order thead th {
 }
 
 .enhanced-order .ob {
-  color: #b100b1 !important;
-  font-weight: bold !important;
-  opacity: 1 !important;
+	color: #b100b1 !important;
+	font-weight: bold !important;
+	opacity: 1 !important;
 }
 
 .enhanced-order .ob,
@@ -437,62 +446,62 @@ table.enhanced-order thead th {
 }
 
 @keyframes best-time {
-  0% {
-    opacity: 0.5; }
-  66% {
-    opacity: 1; } 
+	0% {
+		opacity: 0.5; }
+	66% {
+		opacity: 1; } 
 }
 
 .enhanced-order .best {
-	opacity: 0.5;
+	opacity: 0.75;
 }
 
 .enhanced-order .popcorn-time {
-    animation: popcorn-time 1s alternate infinite;
-    color: rgba(255, 229, 22, 0.81);
+	animation: popcorn-time 1s alternate infinite;
+	color: rgba(255, 229, 22, 0.81);
 }
 
 @keyframes popcorn-time {
-    0 {
-        color: #ffe516;
-    }
-    100% {
-        color: rgba(255, 229, 22, 0.81);
-    }
+	0 {
+		color: #ffe516;
+	}
+	100% {
+		color: rgba(255, 229, 22, 0.81);
+	}
 }
 
 .enhanced-order .sector .bar {
-  background: rgba(255,255,255,0.1);
-  color: transparent;
-  font-size: 0;
-  left: 0;
-  position: absolute;
-  top: auto;
-  bottom: 0;
-  width: 100%;
-  z-index: 1;
-  height: 2px;
+	background: rgba(255,255,255,0.1);
+	color: transparent;
+	font-size: 0;
+	left: 0;
+	position: absolute;
+	top: auto;
+	bottom: 0;
+	width: 100%;
+	z-index: 1;
+	height: 2px;
 }
 
 .enhanced-order .sector .current,
 .enhanced-order .sector .best {
-  position: relative;
-  z-index: 2;
+	position: relative;
+	z-index: 2;
 }
 
 .enhanced-order .previous,
 .enhanced-order .estimate,
 .enhanced-order .remaining {
-    color: #666;
-		font-size: 1.1rem;
+	color: #666;
+	font-size: 1.1rem;
 }
 
 .enhanced-order .car-pitstops .expanded-info * {
-    text-transform: uppercase;
+	text-transform: uppercase;
 }
 
 .enhanced-order .car-pitstops .expanded-info {
-    flex-direction: column;
+	flex-direction: column;
 }
 
 .enhanced-order .car-pitstops.imminent {
@@ -508,9 +517,27 @@ table.enhanced-order thead th {
 	}
 }
 
+.enhanced-order td.car-pitstops {
+	position: relative;
+}
+
+.enhanced-order td.car-pitstops:hover:after {
+	background: rgba(0,0,0,0.75);
+	content: "History: " attr(pitstops);
+	display: block;
+	font-size: 0.75em;
+	font-weight: 400;
+	left: 0;
+	padding: 0.25rem;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%) translateX(-100%);
+	white-space: nowrap;
+}
+
 /* Categories */
 .enhanced-order td.car-number {
-    color: white !important;
+	color: white !important;
 }
 
 .enhanced-order td.LMP1,
@@ -519,7 +546,7 @@ table.enhanced-order thead th {
 }
 
 .enhanced-order td.car-number.LMP1 {
-    background: #D42E12;
+	background: #D42E12;
 }
 
 .enhanced-order td.LMP2,
@@ -528,7 +555,7 @@ table.enhanced-order thead th {
 }
 
 .enhanced-order td.car-number.LMP2 {
-    background: #36578C;
+	background: #36578C;
 }
 
 .enhanced-order td.LMGTEPro,
@@ -537,7 +564,7 @@ table.enhanced-order thead th {
 }
 
 .enhanced-order td.car-number.LMGTEPro {
-    background: #009645;
+	background: #009645;
 }
 
 .enhanced-order td.LMGTEAm,
@@ -546,14 +573,30 @@ table.enhanced-order thead th {
 }
 
 .enhanced-order td.car-number.LMGTEAm {
-    background: #FE5000;
+	background: #FE5000;
+}
+
+.enhanced-order td.car-number {
+	position: relative;
+}
+
+.enhanced-order td.car-number:hover:after {
+	background: inherit;
+	content: attr(data-category);
+	font-size: 0.75em;
+	font-weight: 400;
+	left: 100%;
+	padding: 0.25rem;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
 }
 
 .enhanced-order tr.LMP1,
 .enhanced-order tr.LMP2,
 .enhanced-order tr.LMGTEPro,
 .enhanced-order tr.LMGTEAm {
-  border-top: 2px solid;
+	border-top: 2px solid;
 }
 
 .enhanced-order tr.LMP1 { border-color: #D42E12 }
@@ -566,26 +609,26 @@ table.enhanced-order thead th {
 .enhanced-order tr.LMP2 ~ tr.LMP2, 
 .enhanced-order tr.LMGTEPro ~ tr.LMGTEPro, 
 .enhanced-order tr.LMGTEAm ~ tr.LMGTEAm {
-    border-top-width: 0;
+	border-top-width: 0;
 }
 
 
 /* Narrow Screens */
 @media (max-width: 1080px) {
-    span.car-detail-wrap {
-        flex-wrap: wrap;
-    }
+	span.car-detail-wrap {
+		flex-wrap: wrap;
+	}
 
-    span.car-detail-wrap span {
-        flex-basis: 100%
-    }
+	span.car-detail-wrap span {
+		flex-basis: 100%
+	}
 
-    span.car-car,
-    span.car-tire,
-    th.car-speed,
-    td.car-speed {
-        display: none;
-    }
+	span.car-car,
+	span.car-tire,
+	th.car-speed,
+	td.car-speed {
+		display: none;
+	}
 }
 
 @media (max-width: 900px) {
@@ -605,10 +648,18 @@ table.enhanced-order thead th {
 
 @media (max-width: 700px) {
 	.enhanced .hide-700 {
-	    display: none;
+		display: none;
 	}
 
 	.enhanced * {
-	    font-size: 0.8rem !important;
+		font-size: 0.8rem !important;
+	}
+
+	.enhanced-status {
+		height: 16px;
+	}
+
+	table.enhanced-order thead th {
+		top: 16px;
 	}
 }
