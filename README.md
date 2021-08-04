@@ -1,3 +1,5 @@
+**As the FIA timing website has been redesigned, this extension no longer works (and isn't as necessary as the site is vastly improved). I've removed the extensions from the stores, but will leave the repo as an archive. And as always, check [timing71.org](https://www.timing71.org/) for all your timing needs!**
+
 # Better Timing Extension
 
 1. Install the appropriate extension:
